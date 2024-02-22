@@ -1,0 +1,21 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/books
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      auto-add-partitions: true
+      group-id: book-management-service-group
+      auto-offset-reset: earliest
+    producer:
+      auto-add-partitions: true
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    listener:
+      missing-topics-fatal: false
+  flyway:
+    locations: classpath:/db/migration
+
+mongock:
+  change-logs-scan-package:
+    - "com.datasystem.bookservice.infrastructure.changelog"
